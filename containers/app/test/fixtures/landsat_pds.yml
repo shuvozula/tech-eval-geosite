@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key: L8/001/002/LC80010022016230LGN00/LC80010022016230LGN00_B1.TIF
+  last_modified: 2020-06-21 18:04:19
+  etag: d483767fa74f479e23814abed7fe13da
+  size: 35027713
+  owner_id: f5f9bd0f2036a9a809aae8e2bfdc5a70ad6bf696695739b71efc1cf5ccdc2718
+  display_name: landsat-pds
+  storage_class: INTELLIGENT_TIERING
+
+two:
+  key: L8/001/002/LC80010022016230LGN00/LC80010022016230LGN00_B11.TIF
+  last_modified: 2020-06-21 18:04:19
+  etag: df3dac648380108f391a2d5fab70f8dd
+  size: 35027713
+  owner_id: f5f9bd0f2036a9a809aae8e2bfdc5a70ad6bf696695739b71efc1cf5ccdc2718
+  display_name: landsat-pds
+  storage_class: INTELLIGENT_TIERING

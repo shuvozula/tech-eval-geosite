@@ -1,0 +1,36 @@
+version: "3"
+services:
+  app:
+    container_name: app
+    build:
+      context: containers/app/.
+    ports:
+      - "3000:3000"
+    environment:
+      - LANDSAT_URL=https://landsat-pds.s3.amazonaws.com/
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    volumes:
+      - ./containers/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./containers/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+    ports:
+      - "80:80"
+      - "443:443"
+  marblecutter:
+    container_name: marblecutter
+    image: marblecutter-virtual:latest
+    depends_on:
+      - redis
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+  redis:
+    container_name: redis
+    image: redis:alpine
+    volumes:
+      - ./containers/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"

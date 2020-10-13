@@ -1,0 +1,27 @@
+<h1>Landsat COGs</h1>
+
+<table>
+  <tr>
+    <th>ETag</th>
+    <th>Size</th>
+    <th>Owner ID</th>
+    <th>Display Name</th>
+    <th>Storage Class</th>
+    <th>Last Modified</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+  </tr>
+
+  <% @landsat_recs.each_with_index do |landsat, index| %>
+    <tr onclick="window.location='http://localhost/mc/preview?url=<%= landsat.fetch_url %>';" tabindex="<%= index %>">
+      <td><%= landsat.etag %></td>
+      <td><%= landsat.size %></td>
+      <td><%= landsat.owner_id %></td>
+      <td><%= landsat.display_name %></td>
+      <td><%= landsat.storage_class %></td>
+      <td><%= landsat.last_modified %></td>
+      <td><%= landsat.created_at %></td>
+      <td><%= landsat.updated_at %></td>
+    </tr>
+  <% end %>
+</table>
