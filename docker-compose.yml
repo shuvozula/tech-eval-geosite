@@ -14,23 +14,27 @@ services:
     volumes:
       - ./containers/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./containers/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./geotiffs:/usr/share/nginx/geotiffs
     ports:
       - "80:80"
       - "443:443"
   marblecutter:
     container_name: marblecutter
-    image: marblecutter-virtual:latest
-    depends_on:
-      - redis
+    image: marblecutter-radiant-earth:latest
+    network_mode: "host"
+    # depends_on:
+    #   - redis
     ports:
       - "8000:8000"
     environment:
-      - REDIS_HOST=redis
+      - REDIS_HOST=localhost
       - REDIS_PORT=6379
+      - TRACER_HOST=localhost
+      - TRACE_ENABLED=false
+      - LOG_CFG=/opt/marblecutter/config/log.yaml
+      - IN_MEMORY_LRU_CACHE_SIZE=8192
   redis:
     container_name: redis
-    image: redis:alpine
-    volumes:
-      - ./containers/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    image: lru_redis:latest
     ports:
       - "6379:6379"
